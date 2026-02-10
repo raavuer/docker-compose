@@ -1,3 +1,5 @@
 .env
 
+traefik/traefik_data/acme.json
+
 minecraft-server/minecraft_data/

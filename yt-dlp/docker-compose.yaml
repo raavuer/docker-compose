@@ -1,0 +1,29 @@
+name: home_lab
+
+
+services:
+
+  yt-dlp:
+    image: marcobaobao/yt-dlp-webui
+    container_name: yt-dlp
+    hostname: yt-dlp
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./yt-dlp_data:/downloads
+    healthcheck:
+      test: curl -f http://localhost:3033 || exit 1
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.yt-dlp.rule=Host(`yt.${DOMAIN}`)"
+      - "homepage.group=Containers"
+      - "homepage.name=YT-Dlp"
+      - "homepage.icon=youtube"
+      - "homepage.href=https://yt.${DOMAIN}"
+
+
+networks:
+  default:
+    name: home_lab
+    external: true
+

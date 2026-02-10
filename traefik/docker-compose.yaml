@@ -1,0 +1,49 @@
+name: home_lab
+
+
+services:
+
+  traefik:
+    image: traefik
+    container_name: traefik
+    hostname: traefik
+    restart: unless-stopped
+    env_file: .env
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik_data:/etc/traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.${DOMAIN}`)"
+      - "traefik.http.routers.traefik.service=api@internal"
+      - "traefik.http.routers.traefik.middlewares=secure@file"
+      - "homepage.group=Containers"
+      - "homepage.name=Traefik"
+      - "homepage.icon=traefik-proxy"
+      - "homepage.href=https://traefik.${DOMAIN}"
+
+
+networks:
+  defualt:
+    name: home_lab
+    driver: bridge
+    attachable: true
+    enable_ipv4: true
+    enable_ipv6: false
+    ipam:
+      config:
+        - subnet: 10.0.0.0/24
+          ip_range: 10.0.0.0/24
+          gateway: 10.0.0.254
+
+# Other containers
+# networks:
+#   default:
+#     name: home_lab
+#     external: true

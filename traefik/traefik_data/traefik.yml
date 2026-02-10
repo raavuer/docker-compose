@@ -1,0 +1,53 @@
+api:
+  dashboard: true
+  insecure: false
+
+log:
+  level: INFO
+
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    exposedbydefault: false
+    network: home_lab
+  file:
+    directory: "/etc/traefik/"
+
+entrypoints:
+  web:
+    address: ":80"
+    http:
+      redirections:
+        entrypoint:
+          to: websecure
+          scheme: https
+          permanent: true
+  websecure:
+    address: ":443"
+    asDefault: true
+    http:
+      tls:
+        certResolver: cloudflare
+        domains:
+          - main: "micahronan.com"           
+          - sans: "*.micahronan.com"
+    http3: true
+
+http:
+  middlewares:
+    secure:
+      basicAuth:
+        users:
+          - "admin:$apr1$HpukBzs8$AG2fdS68FP.FrJ/lFRjw/1"
+ 
+certificatesresolvers:
+  cloudflare:
+    acme:
+      email: "micahronan@proton.me"
+      storage: "/etc/traefik/acme.json"
+      caServer: "https://acme-v02.api.letsencrypt.org/directory" 
+      dnsChallenge:
+        provider: cloudflare
+        resolvers: 
+          - "1.1.1.1:53"
+          - "1.0.0.1:53"

@@ -1,0 +1,26 @@
+name: home_lab
+
+services:
+
+  glance:
+    image: glanceapp/glance
+    container_name: glance
+    hostname: glance
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./glance_data:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.glance.rule=Host(`home.${DOMAIN}`)"
+      - "homepage.group=Containers"
+      - "homepage.name=Glance"
+      - "homepage.icon=glance"
+      - "homepage.href=https://home.${DOMAIN}"
+
+
+networks:
+  default:
+    name: home_lab
+    external: true

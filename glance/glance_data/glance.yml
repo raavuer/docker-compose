@@ -1,0 +1,204 @@
+server:
+  proxied: true
+
+theme:
+  background-color: 50 1 6
+  primary-color: 265 89 79
+  negative-color: 209 88 54
+
+pages:
+  - name: Home
+    head-widgets:
+      - type: search
+        hide-header: true
+        search-engine: https://search.${DOMAIN}/search?q={QUERY}
+        autofocus: true
+        new-tab: true
+    columns:
+      - size: small
+        widgets:
+          - type: clock
+            hour-format: 24h
+            hide-header: true
+            timezones:
+              - timezone: ${TZ}
+          - type: weather
+            cache: 1h
+            hide-header: true
+            location: ${LOCATION}
+            units: imperial
+            hour-format: 12h
+          - type: calendar
+            hide-header: true
+            first-day-of-week: sunday
+      - size: full
+        widgets:
+          - type: split-column
+            widgets:
+              - type: group
+                widgets:
+                  - type: hacker-news
+                  - type: lobsters
+                  - type: rss
+                    limit: 10
+                    collapse-after: 3
+                    style: detailed-list
+                    cache: 12h
+                    feeds:
+                      - url: https://selfh.st/rss/
+                        title: selfh.st
+                      - url: https://ciechanow.ski/atom.xml
+                      - url: https://www.joshwcomeau.com/rss.xml
+                        title: Josh Comeau
+                      - url: https://samwho.dev/rss.xml
+                      - url: https://ishadeed.com/feed.xml
+                        title: Ahmad Shadeed
+              - type: group
+                widgets:
+                  - type: reddit
+                    subreddit: cybersecurity
+                    show-thumbnails: true
+                  - type: reddit
+                    subreddit: networking
+                    show-thumbnails: true
+                  - type: reddit
+                    subreddit: selfhosted
+                    show-thumbnails: true
+                  - type: reddit
+                    subreddit: homelab
+                    show-thumbnails: true
+                  - type: reddit
+                    subreddit: linux
+                    show-thumbnails: true
+                  - type: reddit
+                    subreddit: privacy
+                    show-thumbnails: true
+          - type: videos
+            title: Calvary Chapel Sermons
+            style: grid-cards
+            limit: 5
+            channels:
+              - UC7QNUAE7kKQEMO9RmDKIFZA # Wichita
+              - UC224CW_gI9yV3Nw7m5v5cbg # Twin Cities
+              - UCBmABEBXEVQASkC7Fc9FBDA # Saint Paul
+              - UCyEL8RRZcWrm_-TZ9PY3vDw # Ozarks
+
+  - name: Home Lab
+    head-widgets:
+      - type: split-column
+        widgets:
+          - type: search
+            hide-header: true
+            search-engine: https://search.${DOMAIN}/search?q={QUERY}
+            autofocus: true
+            new-tab: true
+          - type: server-stats
+            hide-header: true
+          #- type: dns-stats
+          #  service: pihole
+          #  url: https://dns.${DOMAIN}/
+    columns:
+      - size: small
+        widgets:
+          - type: clock
+            hour-format: 24h
+            hide-header: true
+            timezones:
+              - timezone: ${TZ}
+          - type: weather
+            cache: 1h
+            hide-header: true
+            location: ${LOCATION}
+            units: imperial
+            hour-format: 12h
+          - type: calendar
+            hide-header: true
+            first-day-of-week: sunday
+      - size: full
+        widgets:
+          - type: split-column
+            widgets:
+              - type: monitor
+                title: Services
+                cache: 1m
+                sites:
+                  - title: Traefik
+                    url: https://traefik.${DOMAIN}
+                    icon: sh:traefik
+                    alt-status-codes: 
+                      - 401
+                  - title: Glance
+                    url: https://home.${DOMAIN}
+                    icon: sh:glance
+                  - title: SearXNG
+                    url: https://search.${DOMAIN}
+                    icon: sh:searxng
+                  - title: Minecraft Server
+                    url: https://minecraft-server.${DOMAIN}
+                    icon: sh:discopanel
+                  - title: YT-DLP
+                    url: https://yt.${DOMAIN}
+                    icon: sh:youtube-dl
+              - type: docker-containers
+                hide-by-default: false
+      - size: small
+        widgets:
+          - type: bookmarks
+            groups:
+              - links:
+                  - title: NixOS
+                    url: https://mynixos.com/
+                  - title: Tailscale
+                    url: https://login.tailscale.com/
+                  - title: Cloudflare
+                    url: https://dash.cloudflare.com/
+                  - title: NextDNS
+                    href: https://my.nextdns.io/
+                  - title: Github
+                    url: https://github.com/raavuer/
+                  - title: MDN
+                    url: https://developer.mozilla.org/
+                  - title: Wikipedia
+                    url: https://en.wikipedia.org/
+              - title: Social
+                color: 200 50 50
+                links:
+                  - title: Proton Mail
+                    url: https://mail.proton.me/
+                  - title: Messenger
+                    url: https://messenger.com/
+                  - title: Discord
+                    url: https://discord.com/channels/@me
+                  - title: Gmail
+                    url: https://mail.google.com/mail/u/0/
+                  - title: YouTube
+                    url: https://www.youtube.com/
+              - title: Cool Stuff
+                color: 10 70 50
+                links:
+                  - title: Free Media Heck Yah!
+                    url: https://fmhy.net/
+                  - title: Awesome Lists
+                    url: https://github.com/sindresorhus/awesome                  
+                  - title: How Stuff Works
+                    url: https://www.howstuffworks.com/
+                  - title: Learn Anything
+                    url: https://learn-anything.xyz/
+                  - title: Practical Tutorials
+                    url: https://github.com/practical-tutorials/project-based-learning/
+                  - title: Music Theory
+                    url: https://github.com/vpavlenko/study-music
+                  - title: Lock Picking
+                    url: https://www.lockpicking101.com/
+                  - title: Knots
+                    url: https://www.animatedknots.com/
+                  - title: Computer Science
+                    url: https://teachyourselfcs.com/
+                  - title: Web Security Academy
+                    url: https://portswigger.net/web-security/
+                  - title: OWASP Cheat Sheet
+                    url: https://cheatsheetseries.owasp.org/
+                  - title: Awesome Sites to Test On
+                    url: https://github.com/BMayhew/awesome-sites-to-test-on
+                  - title: CyberSecurity Development
+                    url: https://github.com/gerryguy311/Free_CyberSecurity_Professional_Development_Resources

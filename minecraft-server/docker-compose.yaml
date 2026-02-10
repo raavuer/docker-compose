@@ -1,0 +1,29 @@
+name: home_lab
+
+
+services:
+
+  minecraft-server:
+    image: nickheyer/discopanel
+    container_name: minecraft-server
+    hostname: minecraft-server
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./minecraft_data/data:/app/data
+      - ./minecraft_data/backups:/app/backups
+      - ./minecraft_data/tmp:/app/tmp
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.minecraft-server.rule=Host(`minecraft-server.${DOMAIN}`)"
+      - "homepage.group=Containers"
+      - "homepage.name=Minecraft"
+      - "homepage.icon=minecraft"
+      - "homepage.href=https://minecraft-server.${DOMAIN}"
+
+
+networks:
+  default:
+    name: home_lab
+    external: true

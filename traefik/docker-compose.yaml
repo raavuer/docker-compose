@@ -27,10 +27,12 @@ services:
       - "homepage.name=Traefik"
       - "homepage.icon=traefik-proxy"
       - "homepage.href=https://traefik.${DOMAIN}"
+    networks:
+      - home_lab
 
 
 networks:
-  defualt:
+  home_lab:
     name: home_lab
     driver: bridge
     attachable: true

@@ -1,0 +1,26 @@
+name: home_lab
+
+
+services:
+
+  searxng:
+    image: searxng/searxng
+    container_name: searxng
+    hostname: searxng
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./searxng_data:/etc/searxng
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.searxng.rule=Host(`search.${DOMAIN}`)"
+      - "homepage.group=Containers"
+      - "homepage.name=Searx"
+      - "homepage.icon=searxng"
+      - "homepage.href=https://search.${DOMAIN}"
+
+
+networks:
+  default:
+    name: home_lab
+    external: true

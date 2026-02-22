@@ -153,7 +153,7 @@ pages:
                   - title: Cloudflare
                     url: https://dash.cloudflare.com/
                   - title: NextDNS
-                    href: https://my.nextdns.io/
+                    url: https://my.nextdns.io/
                   - title: Github
                     url: https://github.com/raavuer/
                   - title: MDN
@@ -176,10 +176,16 @@ pages:
               - title: Cool Stuff
                 color: 10 70 50
                 links:
+                  - title: Got Questions
+                    url: https://www.gotquestions.org/
+                  - title: Pre Tribulation
+                    url: https://www.pre-trib.org/
+                  - title: Stand to Reason
+                    url: https://www.str.org/
                   - title: Free Media Heck Yah!
                     url: https://fmhy.net/
                   - title: Awesome Lists
-                    url: https://github.com/sindresorhus/awesome                  
+                    url: https://github.com/sindresorhus/awesome
                   - title: How Stuff Works
                     url: https://www.howstuffworks.com/
                   - title: Learn Anything
@@ -192,6 +198,12 @@ pages:
                     url: https://www.lockpicking101.com/
                   - title: Knots
                     url: https://www.animatedknots.com/
+                  - title: Card Tricks 1
+                    url: https://coolcardtricks.net/
+                  - title: Card Tricks 2
+                    url: https://www.vanishingincmagic.com/
+                  - title: BlackJack
+                    url: https://www.beatblackjack.org/
                   - title: Computer Science
                     url: https://teachyourselfcs.com/
                   - title: Web Security Academy

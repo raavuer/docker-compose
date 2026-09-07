@@ -29,8 +29,8 @@ entrypoints:
       tls:
         certResolver: cloudflare
         domains:
-          - main: "micahronan.com"           
-          - sans: "*.micahronan.com"
+          - main: "example.com"           
+          - sans: "*.example.com"
     http3: true
 
 http:
@@ -43,7 +43,7 @@ http:
 certificatesresolvers:
   cloudflare:
     acme:
-      email: "micahronan@proton.me"
+      email: "email@example.com"
       storage: "/etc/traefik/acme.json"
       caServer: "https://acme-v02.api.letsencrypt.org/directory" 
       dnsChallenge:
